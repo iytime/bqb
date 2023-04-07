@@ -60,7 +60,23 @@ func makePart(text string, args ...interface{}) QueryPart {
 		switch v := arg.(type) {
 
 		case []int:
-			newPh := []string{}
+			newPh := make([]string, 0)
+			for _, i := range v {
+				newPh = append(newPh, paramPh)
+				newArgs = append(newArgs, i)
+			}
+			text = strings.Replace(text, "?", strings.Join(newPh, ","), 1)
+
+		case []int64:
+			newPh := make([]string, 0)
+			for _, i := range v {
+				newPh = append(newPh, paramPh)
+				newArgs = append(newArgs, i)
+			}
+			text = strings.Replace(text, "?", strings.Join(newPh, ","), 1)
+
+		case []int32:
+			newPh := make([]string, 0)
 			for _, i := range v {
 				newPh = append(newPh, paramPh)
 				newArgs = append(newArgs, i)
@@ -68,7 +84,7 @@ func makePart(text string, args ...interface{}) QueryPart {
 			text = strings.Replace(text, "?", strings.Join(newPh, ","), 1)
 
 		case []*int:
-			newPh := []string{}
+			newPh := make([]string, 0)
 			for _, i := range v {
 				newPh = append(newPh, paramPh)
 				newArgs = append(newArgs, i)
@@ -81,7 +97,7 @@ func makePart(text string, args ...interface{}) QueryPart {
 			}
 
 		case []string:
-			newPh := []string{}
+			newPh := make([]string, 0)
 			for _, s := range v {
 				newPh = append(newPh, paramPh)
 				newArgs = append(newArgs, s)
@@ -89,7 +105,7 @@ func makePart(text string, args ...interface{}) QueryPart {
 			text = strings.Replace(text, "?", strings.Join(newPh, ","), 1)
 
 		case []*string:
-			newPh := []string{}
+			newPh := make([]string, 0)
 			for _, s := range v {
 				newPh = append(newPh, paramPh)
 				newArgs = append(newArgs, s)
@@ -102,7 +118,7 @@ func makePart(text string, args ...interface{}) QueryPart {
 			}
 
 		case []interface{}:
-			newPh := []string{}
+			newPh := make([]string, 0)
 			for _, s := range v {
 				newPh = append(newPh, paramPh)
 				newArgs = append(newArgs, s)

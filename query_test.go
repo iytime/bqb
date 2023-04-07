@@ -11,7 +11,7 @@ func TestA(t *testing.T) {
 }
 
 func TestArrays(t *testing.T) {
-	q := New("(?) (?) (?) (?) (?)", []string{"a", "b"}, []string{}, []*string{}, []int{1, 2}, []*int{})
+	q := New("(?) (?) (?) (?) (?)", []string{"a", "b"}, []string{}, []*string{}, []int64{1, 2}, []*int{})
 	sql, params, _ := q.ToSql()
 
 	if len(params) != 6 {
@@ -22,6 +22,8 @@ func TestArrays(t *testing.T) {
 	if sql != want {
 		t.Errorf("got: %q, want: %q", sql, want)
 	}
+
+	t.Logf("got: %q, want: %q", sql, want)
 }
 
 func TestJson(t *testing.T) {
