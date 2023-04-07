@@ -1,6 +1,6 @@
 package main
 
-import "github.com/nullism/bqb"
+import "github.com/iytime/bqb"
 
 func basic() {
 	println("===[ Example: Basic ]===")
